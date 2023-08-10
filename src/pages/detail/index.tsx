@@ -18,9 +18,7 @@ export default function DetailPage(props: any) {
   }, []);
 
   const getData = () => {
-    fetch(
-      `https://mpr.cdn.meijingdata.com/mini-programs/meijing-research-web/assets/pages/work/movies.json?time=${new Date().getTime()}`,
-    )
+    fetch(`./data/movies.json?time=${new Date().getTime()}`)
       .then((res) => res.json())
       .then((res) => {
         setDataList(res || []);

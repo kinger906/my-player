@@ -6,6 +6,7 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
+  outputPath: '../kinger906.github.io/static/my-player',
   routes: [
     { path: '/', component: '@/pages/index' },
     { path: '/detail', component: '@/pages/detail/index' },
