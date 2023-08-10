@@ -49,8 +49,7 @@
     (n.o = function (e, t) {
       return Object.prototype.hasOwnProperty.call(e, t);
     }),
-    (n.p =
-      'https://mpr.cdn.meijingdata.com/mini-programs/meijing-research-web/assets/pages/work/dist/'),
+    (n.p = '/'),
     n((n.s = 0));
 })({
   '++zV': function (e, t, n) {
