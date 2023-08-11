@@ -84,7 +84,9 @@ export default class CommonPage extends Component<any, any> {
             onSearch={this.onSearch}
           />
           {total ? (
-            <span className={styles.total}>当前查询结果：{total}条</span>
+            <span className={styles.total}>
+              当前查询结果：{total}条{JSON.stringify(location)}
+            </span>
           ) : (
             <></>
           )}

@@ -7,8 +7,12 @@ const ListItem = (props: any) => {
 
   const onDetail = () => {
     try {
-      //@ts-ignore
-      window.plusHelper.openWindow(`/detail?id=${data.id}`, data.name);
+      const filePath = location.href.replace('#/main', '#/detail');
+      //@ts-ignorey
+      window.plusHelper.openWindow(
+        `${filePath}?id=${data.id}`,
+        data.name + filePath,
+      );
     } catch (err) {
       history.push(`/detail?id=${data.id}`);
     }

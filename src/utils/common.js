@@ -1,5 +1,5 @@
 //是否为本地app
-const isLocal = location.protocol.includes('file');
+const isLocal = true;
 
 //api前缀
 export const prefixApi = isLocal

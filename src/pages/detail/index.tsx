@@ -57,9 +57,7 @@ export default function DetailPage(props: any) {
     <div className={styles.detail_container}>
       <div id="video" className={styles.video}></div>
       <div className={styles.info_container}>
-        <span className={styles.info_label}>
-          简介{JSON.stringify(location)}
-        </span>
+        <span className={styles.info_label}>简介</span>
         <div className={styles.info_body}>
           <span className={styles.info_title}>{get(currentData, 'name')}</span>
           <span className={styles.info}>{get(currentData, 'info')}</span>

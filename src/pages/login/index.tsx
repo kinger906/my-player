@@ -39,7 +39,9 @@ export default function PhoneLoginPage() {
   };
 
   useEffect(() => {
-    loadAllDatas();
+    if (!localStorage.getItem('loadDB')) {
+      loadAllDatas();
+    }
   }, []);
 
   const loadAllDatas = () => {
@@ -48,6 +50,7 @@ export default function PhoneLoginPage() {
       .then((res) => {
         dbHelper.movies.bulkAdd(res);
         setIsLoadData(true);
+        localStorage.setItem('loadDB', '1');
       });
   };
 
