@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { get } from 'lodash';
+import { prefixApi } from '@/utils/common';
 import cn from 'classnames';
 import styles from './index.less';
 
@@ -18,7 +19,7 @@ export default function DetailPage(props: any) {
   }, []);
 
   const getData = () => {
-    fetch(`./data/movies.json?time=${new Date().getTime()}`)
+    fetch(`${prefixApi}/movies.json?time=${new Date().getTime()}`)
       .then((res) => res.json())
       .then((res) => {
         setDataList(res || []);
