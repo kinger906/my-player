@@ -8,7 +8,7 @@ const ListItem = (props: any) => {
   const onDetail = () => {
     try {
       //@ts-ignore
-      window.plusHelper.openWindow(`detail?id=${data.id}`, data.name);
+      window.plusHelper.openWindow(`/detail?id=${data.id}`, data.name);
     } catch (err) {
       history.push(`/detail?id=${data.id}`);
     }
