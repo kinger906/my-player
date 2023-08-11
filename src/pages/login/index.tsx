@@ -3,8 +3,6 @@ import { history } from 'umi';
 import { useEffect, useState } from 'react';
 import { prefixApi } from '@/utils/common';
 import dbHelper from '@/utils/dbHelper';
-// import { getList } from '@/services/index';
-import { get } from 'lodash';
 import styles from './index.less';
 
 const rootSourceBaseUrl =
@@ -13,6 +11,7 @@ const rootSourceBaseUrl =
 export default function PhoneLoginPage() {
   const [userId, setUserId] = useState<string>('admin');
   const [password, setPassword] = useState<string>('123');
+  const [isLoadData, setIsLoadData] = useState<boolean>(false);
 
   const checkInput = () => {
     let result = true;
@@ -48,7 +47,15 @@ export default function PhoneLoginPage() {
       .then((res) => res.json())
       .then((res) => {
         dbHelper.movies.bulkAdd(res);
+        setIsLoadData(true);
       });
+  };
+
+  const onStatus = () => {
+    Toast.show({
+      content: `数据库加载${isLoadData ? '成功' : '失败'}`,
+      position: 'bottom',
+    });
   };
 
   return (
@@ -57,6 +64,7 @@ export default function PhoneLoginPage() {
         <img
           className={styles['phone-logo']}
           src={`${rootSourceBaseUrl}/assets/login/phone_login/logo.png`}
+          onClick={onStatus}
         />
       </div>
       <div className={styles['phone-body']}>
