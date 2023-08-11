@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { get } from 'lodash';
-import { prefixApi } from '@/utils/common';
+import dbHelper from '@/utils/dbHelper';
 import cn from 'classnames';
 import styles from './index.less';
 
@@ -10,31 +10,16 @@ export default function DetailPage(props: any) {
   const {
     location: { query },
   } = props;
-  const [dataList, setDataList] = useState<any>([]);
   const [currentData, setCurrentData] = useState<any>(null);
   const [currentSource, setCurrentSource] = useState<any>(null);
 
   useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = () => {
-    fetch(`${prefixApi}/movies.json?time=${new Date().getTime()}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setDataList(res || []);
-      });
-  };
-
-  useEffect(() => {
     getCurrentData();
-  }, [dataList, query.id]);
+  }, [query.id]);
 
-  const getCurrentData = () => {
-    if (dataList.length > 0 && query.id) {
-      const videoData = dataList.find(
-        (dataItem: any) => dataItem.id == query.id,
-      );
+  const getCurrentData = async () => {
+    if (query.id) {
+      const videoData = await dbHelper.movies.get({ id: Number(query.id) });
       setCurrentData(videoData);
       const cacheObj = JSON.parse(localStorage.getItem(CacheName) || '{}');
       if (cacheObj[query.id]) {
