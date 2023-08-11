@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import ListItem from '@/components/ListItem';
 import SearchBar from '@/components/SearchBar';
-import { prefixApi } from '@/utils/common';
 import dbHelper from '@/utils/dbHelper';
 import { orderBy } from 'lodash';
 const PinyinEngine = require('pinyin-engine');
@@ -12,12 +11,9 @@ export default function IndexPage() {
   const [searchValue, setSearchValue] = useState<string>('');
   const [currentList, setCurrentList] = useState<any>([]);
   const getData = () => {
-    fetch(`${prefixApi}/movies.json?time=${new Date().getTime()}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setDataList(orderBy(res || [], ['order'], ['asc']));
-        dbHelper.movies.bulkAdd(res);
-      });
+    dbHelper.movies.toArray().then((res: any) => {
+      setDataList(orderBy(res || [], ['order'], ['asc']));
+    });
   };
 
   const onSearch = (val: string) => {

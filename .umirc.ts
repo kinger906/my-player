@@ -8,7 +8,8 @@ export default defineConfig({
   },
   outputPath: '../kinger906.github.io/static/my-player',
   routes: [
-    { path: '/', component: '@/pages/index' },
+    { path: '/', component: '@/pages/login/index' },
+    { path: '/main', component: '@/pages/index' },
     { path: '/detail', component: '@/pages/detail/index' },
   ],
   fastRefresh: {},
