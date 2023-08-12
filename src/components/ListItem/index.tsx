@@ -9,10 +9,7 @@ const ListItem = (props: any) => {
     try {
       const filePath = location.href.replace('#/main', '#/detail');
       //@ts-ignorey
-      window.plusHelper.openWindow(
-        `${filePath}?id=${data.id}`,
-        data.name + filePath,
-      );
+      window.plusHelper.openWindow(`${filePath}?id=${data.id}`, data.name);
     } catch (err) {
       history.push(`/detail?id=${data.id}`);
     }

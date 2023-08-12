@@ -95,7 +95,7 @@ const plusHelper = {
   },
   openWindow: (path, title) => {
     var as = 'pop-in';
-    var absoluteUrl = document.location.href + path;
+    var absoluteUrl = path;
     var ws = {
       scrollIndicator: 'none',
       scalable: false,
