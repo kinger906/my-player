@@ -11,7 +11,6 @@ const rootSourceBaseUrl =
 export default function PhoneLoginPage() {
   const [userId, setUserId] = useState<string>('admin');
   const [password, setPassword] = useState<string>('123');
-  const [isLoadData, setIsLoadData] = useState<boolean>(false);
 
   const checkInput = () => {
     let result = true;
@@ -45,29 +44,35 @@ export default function PhoneLoginPage() {
   }, []);
 
   const loadAllDatas = () => {
-    fetch(`${prefixApi}/movies.json?time=${new Date().getTime()}`)
+    fetch(`${prefixApi}/movie.json?time=${new Date().getTime()}`)
       .then((res) => res.json())
       .then((res) => {
-        dbHelper.movies.bulkAdd(res);
-        setIsLoadData(true);
+        dbHelper.movie.bulkAdd(res.movie);
         localStorage.setItem('loadDB', '1');
+        Toast.show({
+          content: `数据库加载成功`,
+          position: 'bottom',
+        });
       });
   };
 
-  const onStatus = () => {
-    Toast.show({
-      content: `数据库加载${isLoadData ? '成功' : '失败'}`,
-      position: 'bottom',
-    });
+  const onReload = (e: any) => {
+    loadAllDatas();
+    e.stopPropagation();
+  };
+
+  const onConsole = () => {
+    //@ts-ignore
+    var vConsole = new VConsole();
   };
 
   return (
     <div className={styles['phone-container']}>
-      <div className={styles['phone-head']}>
+      <div className={styles['phone-head']} onClick={onConsole}>
         <img
           className={styles['phone-logo']}
           src={`${rootSourceBaseUrl}/assets/login/phone_login/logo.png`}
-          onClick={onStatus}
+          onClick={onReload}
         />
       </div>
       <div className={styles['phone-body']}>

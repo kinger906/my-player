@@ -7,6 +7,12 @@ export default defineConfig({
     type: 'none',
   },
   outputPath: '../kinger906.github.io/static/my-player',
+  headScripts: [
+    {
+      type: 'text/javascript',
+      src: 'https://cdn.bootcdn.net/ajax/libs/vConsole/3.15.0/vconsole.min.js',
+    },
+  ],
   routes: [
     { path: '/', component: '@/pages/login/index' },
     { path: '/main', component: '@/pages/index' },

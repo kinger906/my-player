@@ -19,16 +19,17 @@ export default function DetailPage(props: any) {
 
   const getCurrentData = async () => {
     if (query.id) {
-      const videoData = await dbHelper.movies.get({ id: Number(query.id) });
+      const videoData = await dbHelper.movie.get({ id: Number(query.id) });
       setCurrentData(videoData);
       const cacheObj = JSON.parse(localStorage.getItem(CacheName) || '{}');
+      const sources = JSON.parse(get(videoData, 'sources', '[]'));
       if (cacheObj[query.id]) {
-        const findItem = get(videoData, 'sources', []).find(
+        const findItem = sources.find(
           (videoItem: any) => videoItem.id === cacheObj[query.id],
         );
-        setCurrentSource(findItem || get(videoData, 'sources[0]'));
+        setCurrentSource(findItem || get(sources, '[0]'));
       } else {
-        setCurrentSource(get(videoData, 'sources[0]'));
+        setCurrentSource(get(sources, '[0]'));
       }
     }
   };
@@ -67,22 +68,24 @@ export default function DetailPage(props: any) {
         <div className={styles.source_top}>
           <span className={styles.label}>选集</span>
           <span className={styles.num}>
-            共{get(currentData, 'sources', []).length}集
+            共{JSON.parse(get(currentData, 'sources', '[]')).length}集
           </span>
         </div>
         <div className={styles.source_body}>
-          {get(currentData, 'sources', []).map((sourceItem: any) => (
-            <div
-              key={sourceItem.id}
-              onClick={() => onSelect(sourceItem)}
-              className={cn(styles.source_item, {
-                [styles.source_item_active]:
-                  get(currentSource, 'id') == sourceItem.id,
-              })}
-            >
-              {sourceItem.name}
-            </div>
-          ))}
+          {JSON.parse(get(currentData, 'sources', '[]')).map(
+            (sourceItem: any) => (
+              <div
+                key={sourceItem.id}
+                onClick={() => onSelect(sourceItem)}
+                className={cn(styles.source_item, {
+                  [styles.source_item_active]:
+                    get(currentSource, 'id') == sourceItem.id,
+                })}
+              >
+                {sourceItem.name}
+              </div>
+            ),
+          )}
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ class DbHelper extends Dexie {
   constructor() {
     super('MyDB');
     this.version(1).stores({
-      movies: '++id,id,logo,info,order,sources,page,origin',
+      movie: '++id,id,name,info,sources,logo,page,origin,order,create_time',
     });
   }
 }

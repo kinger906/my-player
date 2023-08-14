@@ -103,7 +103,7 @@ const plusHelper = {
       backButtonAutoControl: 'close',
       titleNView: {
         autoBackButton: true,
-        backgroundColor: '#D74B28',
+        backgroundColor: '#000000',
         titleColor: '#CCCCCC',
       },
     };

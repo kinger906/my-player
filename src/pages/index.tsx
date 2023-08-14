@@ -27,11 +27,11 @@ export default class CommonPage extends Component<any, any> {
 
   getData = async () => {
     const { offset, limit, table, searchValue, currentList } = this.state;
-    const total = await dbHelper.movies
+    const total = await dbHelper.movie
       .filter((m: any) => m.name.includes(searchValue))
       .count();
 
-    dbHelper.movies
+    dbHelper.movie
       .filter((m: any) => m.name.includes(searchValue))
       .offset(offset)
       .limit(limit)
