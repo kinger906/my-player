@@ -2,6 +2,9 @@ import { useState, memo } from 'react';
 import { history } from 'umi';
 import styles from './index.less';
 
+const Img404 =
+  'https://mpr.cdn.meijingdata.com/mini-programs/meijing-applet/assets/common/404-picture.png';
+
 const ListItem = (props: any) => {
   const { data } = props;
 
@@ -18,8 +21,14 @@ const ListItem = (props: any) => {
   return (
     <div className={styles.list_item} onClick={onDetail}>
       <div className={styles.list_item_top}>
-        <img className={styles.logo} src={data.logo} />
-        <span className={styles.num}>{data.sources.length}集全</span>
+        <img
+          className={styles.logo}
+          src={data.logo}
+          onError={(e: any) => (e.target.src = Img404)}
+        />
+        <span className={styles.num}>
+          {JSON.parse(data.sources || '[]').length}集全
+        </span>
       </div>
       <div className={styles.list_item_bottom}>
         <span className={styles.name}>{data.name}</span>

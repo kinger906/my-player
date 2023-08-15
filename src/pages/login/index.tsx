@@ -1,8 +1,8 @@
 import { Input, Button, Toast } from 'antd-mobile-v5';
 import { history } from 'umi';
-import { useEffect, useState } from 'react';
-import { prefixApi } from '@/utils/common';
-import dbHelper from '@/utils/dbHelper';
+import { useEffect, useState, useRef } from 'react';
+import { get, isEmpty } from 'lodash';
+import { prefixApi, fetchUrl, fetchDbList } from '@/utils/common';
 import styles from './index.less';
 
 const rootSourceBaseUrl =
@@ -11,6 +11,7 @@ const rootSourceBaseUrl =
 export default function PhoneLoginPage() {
   const [userId, setUserId] = useState<string>('admin');
   const [password, setPassword] = useState<string>('123');
+  const configRef = useRef<any>();
 
   const checkInput = () => {
     let result = true;
@@ -37,27 +38,49 @@ export default function PhoneLoginPage() {
     }
   };
 
+  const getConfig = () => {
+    fetchUrl(`${prefixApi}/config.json`).then((res) => {
+      configRef.current = res;
+      loadAllDatas(res);
+    });
+  };
+
+  // 加载一个数据集
+  const loadOneIndexedDB = (dbConfig: any, dbStorage: any) => {
+    const dbName = get(dbConfig, 'name');
+    const relativeUrl = get(dbConfig, 'relativeUrl');
+    const allList = get(dbConfig, 'allList', []);
+    const initList = get(dbConfig, 'initList', []);
+    const initFetchList = allList.filter((item: any) =>
+      initList.includes(item.dataKey),
+    );
+    const otherFechList = allList.filter(
+      (item: any) => !initList.includes(item.dataKey),
+    );
+    fetchDbList(initFetchList, relativeUrl, dbName);
+    setTimeout(() => {
+      fetchDbList(otherFechList, relativeUrl, dbName);
+    }, 5000);
+  };
+
   useEffect(() => {
-    if (!localStorage.getItem('loadDB')) {
-      loadAllDatas();
-    }
+    getConfig();
   }, []);
 
-  const loadAllDatas = () => {
-    fetch(`${prefixApi}/movie.json?time=${new Date().getTime()}`)
-      .then((res) => res.json())
-      .then((res) => {
-        dbHelper.movie.bulkAdd(res.movie);
-        localStorage.setItem('loadDB', '1');
-        Toast.show({
-          content: `数据库加载成功`,
-          position: 'bottom',
-        });
+  const loadAllDatas = (config: any) => {
+    const localLoadTimeObj = JSON.parse(
+      localStorage.getItem('localLoadTimeObj') || '{}',
+    );
+    if (!isEmpty(config)) {
+      const mapIndexedDB = get(config, 'mapIndexedDB', []);
+      mapIndexedDB.forEach((dbItem: any) => {
+        loadOneIndexedDB(dbItem, localLoadTimeObj);
       });
+    }
   };
 
   const onReload = (e: any) => {
-    loadAllDatas();
+    getConfig();
     e.stopPropagation();
   };
 
