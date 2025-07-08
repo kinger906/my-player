@@ -3,7 +3,7 @@
   "mapIndexedDB": [
     {
       "name": "movie",
-      "relativeUrl": "https://kinger906.github.io/data/my-player",
+      "relativeUrl": "/data",
       "define": "id,name,info,sources,logo,year,origin,order,create_time",
       "initList": ["/movie_2023.json"],
       "allList": [

@@ -49,7 +49,7 @@
     (n.o = function (e, t) {
       return Object.prototype.hasOwnProperty.call(e, t);
     }),
-    (n.p = '/'),
+    (n.p = '/my-player/'),
     n((n.s = 0));
 })({
   '+2a4': function (e, t, n) {
@@ -11207,7 +11207,7 @@
         return o;
       });
     var r = n('YS25'),
-      a = { basename: '/my-player' };
+      a = { basename: '/' };
     window.routerBase && (a.basename = window.routerBase);
     var o = Object({ NODE_ENV: 'production' }).__IS_SERVER
         ? null
