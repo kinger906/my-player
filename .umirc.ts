@@ -1,12 +1,12 @@
 import { defineConfig } from 'umi';
 
 export default defineConfig({
-  history: { type: 'hash' },
+  base: '/my-player',
+  history: { type: 'browser' },
   hash: false,
   nodeModulesTransform: {
     type: 'none',
   },
-  outputPath: '../kinger906.github.io/static/my-player',
   headScripts: [
     {
       type: 'text/javascript',

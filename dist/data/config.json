@@ -1,0 +1,81 @@
+{
+  "configApp": "my-player",
+  "mapIndexedDB": [
+    {
+      "name": "movie",
+      "relativeUrl": "https://kinger906.github.io/data/my-player",
+      "define": "id,name,info,sources,logo,year,origin,order,create_time",
+      "initList": ["/movie_2023.json"],
+      "allList": [
+        {
+          "dataKey": "/movie_2024.json",
+          "updateTime": 1692070243459
+        },
+        {
+          "dataKey": "/movie_2023.json",
+          "updateTime": 1692070243459
+        },
+        {
+          "dataKey": "/movie_2022.json",
+          "updateTime": 1692098317653
+        },
+        {
+          "dataKey": "/movie_2021.json",
+          "updateTime": 1692146195009
+        },
+        {
+          "dataKey": "/movie_2020.json",
+          "updateTime": 1692159583308
+        },
+        {
+          "dataKey": "/movie_2019.json",
+          "updateTime": 1692159583308
+        },
+        {
+          "dataKey": "/movie_2018.json",
+          "updateTime": 1692159583308
+        },
+        {
+          "dataKey": "/movie_2017.json",
+          "updateTime": 1692159583308
+        },
+        {
+          "dataKey": "/movie_2016.json",
+          "updateTime": 1692159583308
+        },
+        {
+          "dataKey": "/movie_2015.json",
+          "updateTime": 1692159583308
+        },
+        {
+          "dataKey": "/movie_more_10000_20000.json",
+          "updateTime": 1692070243459
+        },
+        {
+          "dataKey": "/movie_more_20000_30000.json",
+          "updateTime": 1692070243459
+        },
+        {
+          "dataKey": "/movie_more_30000_40000.json",
+          "updateTime": 1692070243459
+        },
+        {
+          "dataKey": "/movie_more_40000_50000.json",
+          "updateTime": 1692070243459
+        },
+        {
+          "dataKey": "/movie_more_50000_60000.json",
+          "updateTime": 1692070243459
+        },
+        {
+          "dataKey": "/movie_more_60000_70000.json",
+          "updateTime": 1692070243459
+        },
+        {
+          "dataKey": "/movie_more_70000_80000.json",
+          "updateTime": 1692070243459
+        }
+      ]
+    }
+  ]
+}

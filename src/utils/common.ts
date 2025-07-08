@@ -2,7 +2,7 @@ import { get, isEmpty } from 'lodash';
 import dbHelper from '@/utils/dbHelper';
 import moment from 'moment';
 //api前缀
-export const prefixApi = 'https://kinger906.github.io/data/my-player';
+export const prefixApi = '/data';
 
 export const fetchUrl = (url: string) => {
   return fetch(`${url}?time=${new Date().getTime()}`).then((res) => res.json());
