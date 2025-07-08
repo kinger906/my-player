@@ -11207,7 +11207,7 @@
         return o;
       });
     var r = n('YS25'),
-      a = { basename: '/' };
+      a = { basename: '/my-player/' };
     window.routerBase && (a.basename = window.routerBase);
     var o = Object({ NODE_ENV: 'production' }).__IS_SERVER
         ? null

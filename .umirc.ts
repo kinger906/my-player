@@ -1,8 +1,8 @@
 import { defineConfig } from 'umi';
 
 export default defineConfig({
+  base: '/my-player/',
   history: { type: 'browser' },
-  publicPath: '/my-player/',
   hash: true,
   nodeModulesTransform: {
     type: 'none',
