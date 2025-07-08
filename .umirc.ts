@@ -3,6 +3,7 @@ import { defineConfig } from 'umi';
 export default defineConfig({
   base: '/my-player/',
   history: { type: 'browser' },
+  publicPath: './',
   hash: true,
   nodeModulesTransform: {
     type: 'none',
